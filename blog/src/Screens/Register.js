@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./screens.modules.css";
+import { addItem } from "../Reducers/counterSlice";
+import { useSelector, useDispatch } from "react-redux";
 function Register() {
+  const items = useSelector((state) => state.counter);
+  console.log(items);
   const [formData, setFormData] = useState({
     name: "Please Enter your Name",
     password: "Please Enter your Password",

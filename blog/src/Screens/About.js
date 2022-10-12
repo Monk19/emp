@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, deleteItem } from "../Reducers/counterSlice";
 function About() {
+  const [item, setItem] = useState("someItem");
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.counter.items);
+  console.log(items);
   const { id } = useParams();
 
   const ar1 = [
@@ -617,12 +623,29 @@ function About() {
   console.log("id", id, typeof id);
   return (
     <div>
+      <input
+        onChange={(e) => {
+          dispatch(addItem(e.target.value));
+        }}
+      />
+      <button onClick={() => {}}>click</button>
+      {items.map((ele, index) => {
+        return <h1>{ele}</h1>;
+      })}
+      <>
+        delete
+        <button
+          onClick={() => {
+            dispatch(deleteItem(1));
+          }}
+        ></button>
+      </>
       About{" "}
-      {ar1.map((ele, index) => {
+      {/* {ar1.map((ele, index) => {
         if (ele.id == id) {
           return <h1 key={ele.id}>{ele.title}</h1>;
         } else return null;
-      })}
+      })} */}
     </div>
   );
 }

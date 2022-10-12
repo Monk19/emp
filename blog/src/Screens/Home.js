@@ -1,12 +1,15 @@
 import React from "react";
 import { usePostsQuery } from "../Services/Postsapi";
 import { Outlet } from "react-router-dom";
+
 function Home() {
   const { data, error, isLoading, isFetching, isSuccess } = usePostsQuery();
-  console.log(data);
+  
   return (
     <div>
-      Home
+      {/* {items.map((ele, index) => {
+        return <>ele</>;
+      })} */}
       {error && <>Something went wrong</>}
       {isLoading && <>....isLoading</>}
       {isFetching && <>....isFetching</>}

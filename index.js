@@ -1,5 +1,6 @@
 const express = require("express");
 const { client, a, b } = require("./mongodbConnection");
+const  place  = require("./mongodbConnection");
 const mongoose = require("./connections/mongooseConnection");
 const User = require("./DB/Modles/UsersSchema");
 const cors = require("cors");
@@ -11,12 +12,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
+console.log(place);
 mongoose();
 async function sad() {
   const user = await new User({ name: "Ravi", password: 123 }).save();
   // User.deleteMany({ name: { $in: ["Mahesh"] } });
   const users = await User.findOne();
-  console.log(users);
+  // console.log(users);
 }
 // sad();
 async function connection() {
@@ -34,6 +36,8 @@ async function connection() {
     // } catch (err) {
     //   console.log(err);
     // }
+  } catch (err) {
+    console.log(err);
   } finally {
     await client.close();
   }

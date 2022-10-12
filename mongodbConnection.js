@@ -5,3 +5,5 @@ const client = new MongoClient(uri, { dbName: "users" });
 const a = 1;
 const b = 2;
 module.exports = { client, a, b };
+exports.place = "axe";
+console.log(module.exports);
